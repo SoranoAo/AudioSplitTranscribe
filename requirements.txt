@@ -1,0 +1,14 @@
+certifi==2024.6.2
+cffi==1.16.0
+charset-normalizer==3.3.2
+colorama==0.4.6
+idna==3.7
+pycparser==2.22
+pydub==0.25.1
+requests==2.32.3
+SpeechRecognition==3.10.4
+srt==3.5.3
+tqdm==4.66.4
+typing-extensions==4.12.2
+urllib3==2.2.2
+websockets==12.0
