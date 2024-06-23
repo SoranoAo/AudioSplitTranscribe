@@ -1,37 +1,37 @@
 @echo off
-REM 環境変数の設定
+REM env variable setting
 setlocal
 
-REM Pythonのパスを確認する
+REM check Python path
 where python
 if %errorlevel% neq 0 (
-    echo Pythonのパスが見つかりません。
+    echo "Error. Python path not found"
     pause
     exit /b %errorlevel%
 )
 
 
-REM Python 3.8.10の仮想環境を作成
+REM create Python 3.8.10 env
 python -m venv venv
 if %errorlevel% neq 0 (
-    echo 仮想環境の作成に失敗しました。
+    echo "Error. Failed create Python env"
     pause
     pause
     exit /b %errorlevel%
 )
 
-REM 仮想環境をアクティブ化
+REM venv active
 call venv\Scripts\activate
 if %errorlevel% neq 0 (
-    echo 仮想環境のアクティブ化に失敗しました。
+    echo "Error. Failed active venv"
     pause
     exit /b %errorlevel%
 )
 
-REM requirements.txtからライブラリをインストール
+REM lib install from requirements.txt
 pip install -r requirements.txt
 if %errorlevel% neq 0 (
-    echo ライブラリのインストールに失敗しました。
+    echo "Error. Failed lib install"
     pause
     exit /b %errorlevel%
 )
@@ -39,6 +39,6 @@ if %errorlevel% neq 0 (
 mkdir input_wav
 mkdir output_wav
 
-echo 仮想環境の設定が完了しました！
+echo "complite install!!"
 endlocal
 pause

@@ -1,11 +1,11 @@
 @echo off
-REM 環境変数の設定
+REM env variable setting
 setlocal
 
-REM Pythonのパスを確認する
+REM check Python path
 where python
 if %errorlevel% neq 0 (
-    echo Pythonのパスが見つかりません。
+    echo "Error. Python path not found"
     pause
     exit /b %errorlevel%
 )
@@ -13,7 +13,7 @@ if %errorlevel% neq 0 (
 
 call venv\Scripts\activate
 if %errorlevel% neq 0 (
-    echo 仮想環境のアクティブ化に失敗しました。
+    echo "Error. Failed active venv"
     pause
     exit /b %errorlevel%
 )
@@ -22,7 +22,7 @@ if %errorlevel% neq 0 (
 
 python AudioSplitRenameMain.py
 if %errorlevel% neq 0 (
-    echo 音声ファイル分割・文字起こ・ファイルリネームツールの起動に失敗しました。
+    echo "Error. Failed Run AudioSplitRenameMain"
     pause
     exit /b %errorlevel%
 )
