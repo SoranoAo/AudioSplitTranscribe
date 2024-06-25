@@ -36,12 +36,6 @@ RunAudioSplitRenameMain.bat を実行。
 output_wavフォルダにinput_wavのフォルダに配置されたWavファイル内で無音区間がある部分で区切り、ファイルを分割する。
 分割したファイルでの音声内容を文字起こしを実行し、ファイル名を文字起こしした内容の冒頭３０文字でリネーム。
 
-## 注意
-音声ファイルの文字起こしにGoogleの音声文字起こしAPIを利用しています。
-そのため、本ツールはインターネットに接続する必要があり起動時にネットワークへ接続許可を求めるメッセージが表示されることがありますが、接続許可をお願いいたします。
-
-また、Googleの起こしAPIを利用するため音声ファイルの内容をGoogleのサーバーへ送信することとなります。
-そのため機密性の高い音声を含むファイルでの利用は避けてください。
 
 # 設定
 ## 無音時間とみなす時間の設定
@@ -76,3 +70,31 @@ keep_silence=1000
 型: int
 デフォルト値: 500（0.5秒）
 
+# ライセンス
+下記のオープンソースのソフトウエアを利用させていただいております。
+
+## faster-whisper
+https://github.com/SYSTRAN/faster-whisper
+
+ライセンス
+MIT License
+
+Copyright (c) 2023 SYSTRAN
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
