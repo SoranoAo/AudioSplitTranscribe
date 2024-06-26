@@ -33,7 +33,7 @@ def clean_filename(filename: str) -> str:
     cleaned_filename = re.sub(invalid_chars, '', filename)
     return cleaned_filename
 
-def split_audio_on_silence(audio_path, min_silence_len=1000, silence_thresh=-80, keep_silence=500):
+def split_audio_on_silence(audio_path, min_silence_len, silence_thresh, keep_silence):
     # Load audio file
     audio = AudioSegment.from_wav(audio_path)
     
