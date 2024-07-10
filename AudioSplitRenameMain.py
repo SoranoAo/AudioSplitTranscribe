@@ -103,8 +103,9 @@ if __name__ == "__main__":
     input_dir = os.path.join(current_dir,"input_wav")
     output_dir = os.path.join(current_dir,"output_wav")
 
-    model_size = "large-v3"
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+    # model_size = "large-v3"
+    model_size = "kotoba-tech/kotoba-whisper-v1.1"
+    model = WhisperModel(model_size, device="cuda", compute_type="int8")
 
 
     # JSONファイルのパスを指定
