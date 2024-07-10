@@ -1,4 +1,5 @@
 from faster_whisper import WhisperModel
+import torch
 from pydub import AudioSegment
 from pydub.silence import split_on_silence
 import speech_recognition as sr
@@ -105,7 +106,7 @@ if __name__ == "__main__":
 
     # model_size = "large-v3"
     model_size = "kotoba-tech/kotoba-whisper-v1.1"
-    model = WhisperModel(model_size, device="cuda", compute_type="int8")
+    model = WhisperModel(model_size, device="auto", compute_type="int8")
 
 
     # JSONファイルのパスを指定
