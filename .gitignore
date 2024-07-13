@@ -2,3 +2,4 @@
 /input_wav
 /output_wav
 /tmp
+**/__pycache__

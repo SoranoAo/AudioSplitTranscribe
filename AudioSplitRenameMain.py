@@ -1,4 +1,5 @@
-from typing import List
+from typing import List, Generator
+import time
 
 from faster_whisper import WhisperModel
 from pathlib import WindowsPath
@@ -8,7 +9,7 @@ import os
 import re
 import json
 
-from utils import split_audio_on_silence
+from utils import split_audio_generator
 
 def convert_to_fullwidth(input_string):
     # 半角文字を全角文字に変換する辞書
@@ -70,7 +71,7 @@ def transcribe_audio_online(audio_chunk):
                 return f"API request error: {e}"
 
 
-def save_chunks_with_transcriptions(audio_files:List[WindowsPath], output_dir:WindowsPath, original_filename,model):
+def save_chunks_with_transcriptions(audio_files:Generator, output_dir:WindowsPath, original_filename,model):
     for i, file in enumerate(audio_files):
         #transcription = transcribe_audio_online(chunk)
         transcription = transcribe_audio_offline_whisper(str(file),model)
@@ -92,8 +93,8 @@ def process_directory(input_dir:WindowsPath, output_dir:WindowsPath, model:Whisp
         if filename.endswith(".wav"):
             input_audio_path = input_dir / filename
             print(f"Processing {input_audio_path}...")
-            audio_files:List[WindowsPath] = split_audio_on_silence(input_audio_path,min_silence_len,silence_thresh,keep_silence)
-            save_chunks_with_transcriptions(audio_files, output_dir, os.path.splitext(filename)[0],model)
+            gen:Generator = split_audio_generator(input_audio_path,min_silence_len,silence_thresh,keep_silence)
+            save_chunks_with_transcriptions(gen, output_dir, os.path.splitext(filename)[0],model)
 
 if __name__ == "__main__":
     current_dir = os.getcwd()
@@ -122,5 +123,9 @@ if __name__ == "__main__":
     print(f"Silence Threshold: {silence_thresh}")
     print(f"Keep Silence: {keep_silence}")
 
-
+    stt = time.perf_counter()
     process_directory(input_dir, output_dir,model,min_silence_len,silence_thresh,keep_silence)
+    print(f"\n\n処理時間：{int(time.perf_counter() - stt)} 秒")
+    print("終了するには、何かキーを押してください...")
+    x = input()
+    
